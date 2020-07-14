@@ -649,7 +649,8 @@ static bool wadWriteSplitDlcPackage(os_char_t *unpacked_wad_path, os_char_t *out
     }
     
     FILE *wad_fd = NULL;
-    u16 wad_idx = ((start_content_idx / dlc_content_count) + 1);
+    u16 wad_idx = start_content_idx;
+    if (dlc_content_count > 1) wad_idx = ((wad_idx / dlc_content_count) + 1);
     WadInstallablePackageHeader wad_header = {0};
     
     TmdContentRecord *tmd_contents = tmdGetTitleMetadataContentRecords(tmd_common_block);
