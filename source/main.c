@@ -103,8 +103,12 @@ int main(int argc, char **argv)
             
             /* Check if the output directory string ends with a path separator. */
             /* If so, remove it. */
-            u64 path_len = strlen(argv[i + 1]);
-            if (i == (PATH_COUNT - 1) && argv[i + 1][path_len - 1] == *((u8*)OS_PATH_SEPARATOR)) paths[i][path_len - 1] = (os_char_t)0;
+            if (i == (PATH_COUNT - 1))
+            {
+                u64 path_len = strlen(argv[i + 1]);
+                if (argv[i + 1][path_len - 1] == *((u8*)OS_PATH_SEPARATOR)) paths[i][path_len - 1] = (os_char_t)0;
+                os_mkdir(paths[i], 0777);
+            }
         }
     }
     
