@@ -1,0 +1,11 @@
+/config.mk
+/dlc-wad-splitter
+/dlc-wad-splitter.exe
+/dlc-wad-splitter_wad_data
+*.wad
+*.o
+*.so
+*.so.*
+*.a
+*.dll
+*.lib
