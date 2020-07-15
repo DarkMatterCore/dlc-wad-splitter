@@ -689,7 +689,7 @@ static bool wadWriteSplitDlcPackage(os_char_t *unpacked_wad_path, os_char_t *out
     /* Calculate data size. */
     for(u16 i = 0; i < (dlc_content_count + 1); i++)
     {
-        u16 rec_idx = ((i == 0 ? 0 : start_content_idx) + i);
+        u16 rec_idx = ((i == 0 ? 0 : (start_content_idx - 1)) + i);
         wad_header.data_size += ALIGN_UP(bswap_64(tmd_contents[rec_idx].size), WAD_BLOCK_SIZE);
     }
     
@@ -732,7 +732,7 @@ static bool wadWriteSplitDlcPackage(os_char_t *unpacked_wad_path, os_char_t *out
     for(u16 i = 0; i < (dlc_content_count + 1); i++)
     {
         FILE *cnt_fd = NULL;
-        u16 rec_idx = ((i == 0 ? 0 : start_content_idx) + i);
+        u16 rec_idx = ((i == 0 ? 0 : (start_content_idx - 1)) + i);
         u16 cnt_idx = bswap_16(tmd_contents[rec_idx].index);
         u64 cnt_size = bswap_64(tmd_contents[rec_idx].size);
         u64 aligned_cnt_size = 0;
